@@ -1,11 +1,19 @@
 {
-  "name": "server",
+  "name": "getinvc",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "type": "module",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^3.27.4",
+    "fastify-cors": "^6.0.3",
+    "fastify-socket.io": "^3.0.0",
+    "fastify-static": "^4.6.1",
+    "nanoid": "^3.3.1"
+  }
 }
