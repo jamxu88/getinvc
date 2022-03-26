@@ -25,6 +25,10 @@ socket.on("joinLobby", () => {
     socket.emit("syncData");
 })
 
+socket.on("disc", () => {
+    window.location = "https://getin.vc/"
+})
+
 socket.on("recieveData", (data) => {
     console.log(data) // Use this data to adjust UI components
     lobbyData = data;

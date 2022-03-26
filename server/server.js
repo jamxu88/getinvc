@@ -48,6 +48,9 @@ server.ready().then(() => {
     console.log("Websocket Active");
 
     server.io.on("connection", (socket) => {
+        function syncData() {
+            socket.emit("recieveData", lobby.getDataSync())
+        }
         let lobby;
         console.log("Client Connected - " + socket.id);
         var address = socket.handshake.address;
@@ -81,8 +84,8 @@ server.ready().then(() => {
             }
             
         })
-        socket.on("leaveLobby", (data) => {
-            
+        socket.on("leaveLobby", () => {
+            socket.emit("disc");
         })
         socket.on("setUsername", (data) => {
             console.log(lobby)
@@ -110,12 +113,34 @@ server.ready().then(() => {
             message.setSnowflake(Date.now());
             message.setText(msg);
             lobby.addMessage(message);
-            socket.emit("recieveData", lobby.getDataSync())
+            syncData()
         })
         socket.on("syncData", () => {
-            if(lobby.getUserByIp(address)) socket.emit("recieveData", lobby.getDataSync())
+            if(lobby.getUserByIp(address)) syncData()
         })
 
+        //Web RTC/Coms Stuff
+        socket.on("joinVc", () => {
+            lobby.getUserByIp(address).setInVoiceChat(true);
+            syncData()
+        })
+
+        socket.on("leaveVc", () => {
+            lobby.getUserByIp(address).setInVoiceChat(false);
+            syncData()
+        })
+        
+        socket.on("userMute", () => {
+            lobby.getUserByIp(address).setMuted(true);
+            syncData()
+        })
+
+        socket.on("userUnmute", () => {
+            lobby.getUserByIp(address).setMuted(false);
+            syncData()
+        })
+
+        // User DC
         socket.on('disconnect', () => {
             console.log(address + " - Disconnected");
             if(lobby) {
