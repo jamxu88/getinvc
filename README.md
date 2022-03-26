@@ -17,7 +17,6 @@ PUT GIF OF USAGE HERE
 ## Key Features
 
 * Quick & Easy - Join a voice call in just two clicks.
-* Dark/Light mode.
 * Botting protection.
 * Banning functionality.
 * Choose between mute and push-to-talk.
