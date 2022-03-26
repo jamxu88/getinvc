@@ -1,7 +1,7 @@
 
 <h1 align="center">
   <br>
-  <a href="http://getin.vc"><img src="https://i.imgur.com/40L1G0V.png" alt="getin.vc" width="200"></a>
+  <a href="http://getin.vc"><img src="https://user-images.githubusercontent.com/39576123/160253824-593bf53c-57c3-4b02-9631-1d09619dcca2.png" alt="getin.vc" width="200"></a>
 </h1>
 
 <h4 align="center">Temporary voice and text chat lobbies.</h4>
@@ -28,6 +28,7 @@ PUT GIF OF USAGE HERE
 
 You can join a lobby in two ways:
 
+
 1. On the join page, enter the join code and click "Join".
 <br>GIF HERE
 
@@ -37,6 +38,8 @@ You can join a lobby in two ways:
 ### Creating a Lobby
 On the Create page, define the number of members to the lobby, and click "Create".
 
+### Accessing Settings
+Click the cog on the bottom left of the chat screen. 
 
 ### Locking a Lobby
 1. As an owner, click the cog on the bottom left to access lobby settings.
