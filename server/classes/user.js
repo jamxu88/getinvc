@@ -3,7 +3,8 @@ export default class User {
         this.data = {
             ip: null,
             username: null,
-            muted: null
+            inVoiceChat: false,
+            muted: false,
         }
     }
     setIp(ip) {
@@ -14,5 +15,8 @@ export default class User {
     }
     setMuted(muted) {
         this.data.muted = muted;
+    }
+    setInVoiceChat(inVoiceChat) {
+        this.data.inVoiceChat = inVoiceChat;
     }
 }

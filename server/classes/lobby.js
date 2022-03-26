@@ -2,7 +2,7 @@ export default class Lobby {
     constructor() {
         this.data = {
             id: null, 
-            metdata: {
+            metadata: {
                 owner: null, // User Object
                 code: null, // Join Code
                 users: [], // All the users in the lobby
@@ -17,27 +17,62 @@ export default class Lobby {
         this.data.id = id;
     }
     setOwner(user) {
-        this.data.metdata.owner = user;
+        this.data.metadata.owner = user;
     }
     setCode(code) {
-        this.data.metdata.code = code;
+        this.data.metadata.code = code;
     }
     setMaxUsers(max) {
-        this.data.metdata.max_users = max;
+        this.data.metadata.max_users = max;
     }
     setLocked(locked) {
-        this.data.metdata.locked = locked;
+        this.data.metadata.locked = locked;
     }
     setMessages(messages) {
-        this.data.metdata.messages = messages;
+        this.data.metadata.messages = messages;
+    }
+    addMessage(message) {
+        this.data.metadata.messages.push(message);
     }
     setBans(bans) {
-        this.data.metdata.bans = bans;
+        this.data.metadata.bans = bans;
     }
     addUser(user) {
-        this.data.metdata.users.push(user);
+        this.data.metadata.users.push(user);
     }
     removeUser(user) {
-        this.data.metdata.users.splice(this.data.metdata.users.indexOf(user), 1);
+        this.data.metadata.users.splice(this.data.metadata.users.indexOf(user), 1);
+    }
+    getUserByIp(ip) {
+        return this.data.metadata.users.find(user => user.data.ip === ip);
+    }
+    getDataServer() {
+        return {
+            id: this.data.id,
+            metadata: {
+                owner: this.data.metadata.owner,
+                code: this.data.metadata.code,
+                users: this.data.metadata.users,
+                max_users: this.data.metadata.max_users,
+                messages: this.data.metadata.messages,
+                bans: this.data.metadata.bans,
+                locked: this.data.metadata.locked
+            }
+        }
+    }
+    getDataSync() {
+        return {
+            owner: {
+                username: this.data.metadata.owner.data.username,
+            },
+            code: this.data.metadata.code,
+            users: this.data.metadata.users.map(user => {
+                return {
+                    username: user.data.username,
+                    muted: user.data.muted
+                }
+            }),
+            messages: this.data.metadata.messages,
+        }
     }
 }
