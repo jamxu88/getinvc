@@ -2,6 +2,7 @@ export default class User {
     constructor() {
         this.data = {
             ip: null,
+            id: null,
             username: null,
             inVoiceChat: false,
             muted: false,
@@ -18,5 +19,8 @@ export default class User {
     }
     setInVoiceChat(inVoiceChat) {
         this.data.inVoiceChat = inVoiceChat;
+    }
+    setId(id) {
+        this.data.id = id;
     }
 }

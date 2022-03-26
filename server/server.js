@@ -23,6 +23,9 @@ server.register(fastifyStatic, {
     root: path.join(__dirname, '../client')
 });
 
+
+
+// To be moved to cloud storage, linked together
 let lobbyList = [];
 let lobbyIds = [];
 let lobbyCodes = [];
@@ -48,12 +51,16 @@ server.ready().then(() => {
     console.log("Websocket Active");
 
     server.io.on("connection", (socket) => {
-        function syncData() {
-            socket.emit("recieveData", lobby.getDataSync())
+        
+        function syncData(roomID) {
+            let data = lobby.getDataSync()
+            socket.to(roomID).emit("recieveData", data);
+            socket.emit("recieveData", data);
         }
         let lobby;
         console.log("Client Connected - " + socket.id);
         var address = socket.handshake.address;
+
         socket.on("createLobby", (maxUsers) => {
             console.log(address + " - Create Lobby");
 
@@ -70,6 +77,7 @@ server.ready().then(() => {
             lobbyCodes.push(lobby.data.metadata.code);
             console.log(lobby);
         })
+
         socket.on("joinCode", (code) => {
             lobby = lobbyList[lobbyCodes.indexOf(code)];
             console.log(address + " - Join Lobby with code " + code);
@@ -84,11 +92,17 @@ server.ready().then(() => {
             }
             
         })
+
         socket.on("leaveLobby", () => {
             socket.emit("disc");
         })
+
         socket.on("setUsername", (data) => {
             console.log(lobby)
+            if(!lobby) {
+                socket.emit("invalid", "Lobby does not exist");
+                return;
+            }
             console.log(lobby.getDataServer())
             console.log(lobby.getDataSync())
             if(lobby.data.metadata.users.length >= lobby.data.metadata.max_users || lobby.data.metadata.locked) {
@@ -99,10 +113,12 @@ server.ready().then(() => {
             let user = new User();
             user.setIp(address);
             user.setUsername(data);
+            user.setId(socket.id)
             lobby.addUser(user);
             if(address == lobby.data.metadata.owner.data.ip) {
                 lobby.setOwner(user)
             }
+            socket.join(lobby.data.id)
             socket.emit("joinLobby")
         })
 
@@ -113,31 +129,32 @@ server.ready().then(() => {
             message.setSnowflake(Date.now());
             message.setText(msg);
             lobby.addMessage(message);
-            syncData()
+            syncData(lobby.data.id)
         })
-        socket.on("syncData", () => {
-            if(lobby.getUserByIp(address)) syncData()
+
+        socket.on("syncData", (a) => {
+            if(a) syncData(lobby.data.id)
         })
 
         //Web RTC/Coms Stuff
         socket.on("joinVc", () => {
             lobby.getUserByIp(address).setInVoiceChat(true);
-            syncData()
+            syncData(lobby.data.id)
         })
 
         socket.on("leaveVc", () => {
             lobby.getUserByIp(address).setInVoiceChat(false);
-            syncData()
+            syncData(lobby.data.id)
         })
         
         socket.on("userMute", () => {
             lobby.getUserByIp(address).setMuted(true);
-            syncData()
+            syncData(lobby.data.id)
         })
 
         socket.on("userUnmute", () => {
             lobby.getUserByIp(address).setMuted(false);
-            syncData()
+            syncData(lobby.data.id)
         })
 
         // User DC
@@ -146,6 +163,7 @@ server.ready().then(() => {
             if(lobby) {
                 let user = lobby.getUserByIp(address);
                 lobby.removeUser(user)
+                syncData(lobby.data.id)
             }
         })
   });

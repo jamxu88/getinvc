@@ -22,7 +22,7 @@ document.getElementById("setUsername").addEventListener("click", () => {
 
 socket.on("joinLobby", () => {
     // Remove Lobby Overlay
-    socket.emit("syncData");
+    socket.emit("syncData", true);
 })
 
 socket.on("disc", () => {
@@ -30,6 +30,7 @@ socket.on("disc", () => {
 })
 
 socket.on("recieveData", (data) => {
+    console.log("data recieved")
     console.log(data) // Use this data to adjust UI components
     lobbyData = data;
 })
