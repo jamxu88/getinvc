@@ -3,7 +3,7 @@ export default class User {
         this.data = {
             ip: null,
             username: null,
-            muted: null
+            muted: false,
         }
     }
     setIp(ip) {
