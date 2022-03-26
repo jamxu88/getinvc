@@ -4,7 +4,7 @@
   <a href="http://getin.vc"><img src="https://i.imgur.com/40L1G0V.png" alt="getin.vc" width="200"></a>
 </h1>
 
-<h4 align="center"><b>Temporary voice and text chat lobbies.</b></h4>
+<h4 align="center">Temporary voice and text chat lobbies.</h4>
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
@@ -16,7 +16,7 @@ PUT GIF OF USAGE HERE
 
 ## Key Features
 
-* Quick & Easy - Join a voice and call in just two clicks.
+* Quick & Easy - Join a voice call in just two clicks.
 * Dark/Light mode.
 * Botting protection.
 * Banning functionality.
@@ -27,17 +27,26 @@ PUT GIF OF USAGE HERE
 
 ### Joining a Lobby
 
+You can join a lobby in two ways:
+
+1. On the join page, enter the join code and click "Join".
+<br>GIF HERE
+
+2. Enter a join link into your browser.
+<br>GIF HERE
 
 ### Creating a Lobby
-
+On the Create page, define the number of members to the lobby, and click "Create".
 
 
 ### Locking a Lobby
-
+1. As an owner, click the cog on the bottom left to access lobby settings.
+2. Click "Lock Lobby"
 
 
 
 ## Credits
 
-This software uses the following open source packages:
+This site uses the following open source packages:
+<br> TBD
 
