@@ -23,8 +23,6 @@ server.register(fastifyStatic, {
     root: path.join(__dirname, '../client')
 });
 
-
-
 // To be moved to cloud storage, linked together
 let lobbyList = [];
 let lobbyIds = [];
@@ -76,6 +74,7 @@ server.ready().then(() => {
             lobbyIds.push(lobby.data.id);
             lobbyCodes.push(lobby.data.metadata.code);
             console.log(lobby);
+            socket.emit("ownerJoin", lobby.data.metadata.code)
         })
 
         socket.on("joinCode", (code) => {
