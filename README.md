@@ -20,7 +20,7 @@ PUT GIF OF USAGE HERE
 * Botting protection.
 * Banning functionality.
 * Choose between mute and push-to-talk.
-* All contained in your browser, no software necessary.
+* **All contained in your browser, no software necessary.**
 
 ## How To Use
 
