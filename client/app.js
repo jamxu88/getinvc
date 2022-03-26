@@ -1,5 +1,7 @@
 var socket = io();
 
+let lobbyData;
+
 const urlParams = new URLSearchParams(window.location.search);
 const code = urlParams.get("code");
 if(code) {
@@ -25,6 +27,7 @@ socket.on("joinLobby", () => {
 
 socket.on("recieveData", (data) => {
     console.log(data) // Use this data to adjust UI components
+    lobbyData = data;
 })
 
 document.getElementById("sendMessage").addEventListener("click", () => {
