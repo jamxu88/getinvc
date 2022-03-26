@@ -13,12 +13,16 @@ class Create extends Component {
         })
         console.log(e.target.value)
     }
+    handleSubmitForm  = e => {
+        console.log("hjfkdsahlfjksldf")
+        //create lobby here
+    }
     render(){
         return(
             <div className='flex pt-8 place-self-center space-x-8 text text-2xl'>
                 <BackFromCreate handleSubmitForm={this.props.handleSubmitForm}/>
                 <CreateMember handleChange={this.handleUser}/>
-                <CreateLobby />
+                <CreateLobby handleSubmit={this.handleSubmitForm}/>
             </div>
         )
     }

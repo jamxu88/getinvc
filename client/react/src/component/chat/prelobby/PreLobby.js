@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Username from './Username'
 import JoinButton from './JoinButton'
 import BackButton from './BackButton'
+import IO from './IO'
 
 class PreLobby extends Component {
     render(){
@@ -32,22 +33,7 @@ class PreLobby extends Component {
                         <button className='place-self-center flex border-white border-2 rounded-full w-16 dark:text-white justify-center focus:bg-black'>
                             <p>K</p>
                         </button>
-                        <table className='pt-8 grid gap-4 grid-cols-2 griflex place-self-center dark:text-white text-xl'>
-                            <td>Input Device</td>
-                            <td>
-                            <select className='bg-transparent w-36 border-2 rounded-lg' id="input">
-                                <option className='bg-dark' value="male"> Male </option>
-                                    <option className='bg-dark' value="female"> Female</option>
-                                </select>
-                            </td>
-                            <td>Output Device</td>
-                            <td>
-                                <select className='bg-transparent w-36 border-2 rounded-lg' id="output">
-                                    <option className='bg-dark' value="male"> Male </option>
-                                    <option className='bg-dark' value="female"> Female</option>
-                                </select>
-                            </td>
-                        </table>
+                        <IO />
                     </div>
                 </div>
             </div>
