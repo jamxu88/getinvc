@@ -2,10 +2,16 @@ import React, {Component} from 'react'
 import BackFromCreate from './BackFromCreate'
 import CreateLobby from './CreateLobby'
 import CreateMember from './CreateMember'
+import { io } from "socket.io-client";
+const socket = io();
+
+socket.on("ownerJoin", (code) => {
+    window.location = `/app?code=${code}`
+})
 
 class Create extends Component {
     state = {
-        maxUsers: 10
+        maxUsers: 2
     }
     handleUser = e => {
         this.setState({
@@ -14,9 +20,10 @@ class Create extends Component {
         console.log(e.target.value)
     }
     handleSubmitForm  = e => {
-        console.log("hjfkdsahlfjksldf")
-        //create lobby here
+        socket.emit("createLobby", parseInt(this.state.maxUsers));
+        
     }
+    
     render(){
         return(
             <div className='flex pt-8 place-self-center space-x-8 text text-2xl'>

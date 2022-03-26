@@ -76,6 +76,7 @@ server.ready().then(() => {
             lobbyIds.push(lobby.data.id);
             lobbyCodes.push(lobby.data.metadata.code);
             console.log(lobby);
+            socket.emit("ownerJoin", lobby.data.metadata.code)
         })
 
         socket.on("joinCode", (code) => {
