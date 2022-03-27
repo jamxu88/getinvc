@@ -213,9 +213,7 @@ server.ready().then(() => {
                 syncData(lobby.data.id)
             }
         }) */
-
-  });
-
+    });
 });
 
 server.listen(process.env.PORT || 8000);

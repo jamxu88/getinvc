@@ -271,7 +271,7 @@ class Chat extends Component{
     }
 
     handleJoin =e=> {
-        console.log('oaigdsoighaosdgh')
+        this.createStream();
         this.setState({})
     }
 
