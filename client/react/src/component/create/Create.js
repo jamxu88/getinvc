@@ -11,17 +11,19 @@ socket.on("ownerJoin", (code) => {
 
 class Create extends Component {
     state = {
-        maxUsers: 2
+        maxUsers: ""
     }
     handleUser = e => {
         this.setState({
             maxUsers: e.target.value
         })
-        console.log(e.target.value)
     }
     handleSubmitForm  = e => {
-        socket.emit("createLobby", parseInt(this.state.maxUsers));
-        
+        if(this.state.maxUsers > 10 || this.state.maxUsers <= 1 || this.state.maxUsers === "") {
+            alert("Lobbies can have a max of 10 users and a min of 2 users")
+        }else {
+            socket.emit("createLobby", parseInt(this.state.maxUsers));
+        }
     }
     
     render(){

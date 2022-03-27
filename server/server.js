@@ -102,7 +102,8 @@ server.ready().then(() => {
         socket.on("setUsername", (data) => {
             console.log("setting username "+ data)
             console.log(lobby)
-            if(!lobby) {
+            if(lobby.data.metadata.maxUsers == null) lobby.data.metadata.maxUsers = 0;
+            if(!lobby || !lobby.data.metadata.locked || lobby.data.metadata.users.length >= lobby.data.metadata.max_users) { 
                 socket.emit("invalid", "Lobby does not exist");
                 return;
             }
@@ -126,6 +127,7 @@ server.ready().then(() => {
         })
 
         socket.on("sendMessage", (msg) => {
+            if(!lobby) return;
             let message = new Message();
             console.log(lobby)
             let user = lobby.getUserByIp(address);
