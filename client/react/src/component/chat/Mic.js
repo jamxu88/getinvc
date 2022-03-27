@@ -5,10 +5,6 @@ class Mic extends Component {
     state = {
         muted: false,
     }
-    handleClick = (e) => {
-        if(this.state.muted) socket.emit("unmute")
-        if(!this.state.muted) socket.emit("mute")
-    }
     render(){
         return(
             <svg className='fill-black dark:fill-white' width="16" height="16" viewBox="0 0 16 22" xmlns="http://www.w3.org/2000/svg">

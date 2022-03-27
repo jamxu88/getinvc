@@ -82,6 +82,7 @@ class Chat extends Component{
         setting: false,
         peers: [],
         userUpdate: [],
+        muted: false,
     }
     handleDarkMode = e => {
         var element = document.getElementById("darkmode");
@@ -181,14 +182,8 @@ class Chat extends Component{
 		return peer;
 	}
 
-
-    eventListener = window.addEventListener('resize', function(event){
-
-        //document.getElementById('chatWindow').style.height = window.innerHeight-36
-        //console.log(document.getElementById('chatWindow').style.height)
-    })
-
     syncData = socket.on("recieveData", (data) => {
+        console.log(this.state)
         lobbyData = data;
         if(lobbyData.owner) {
             this.state.owner = lobbyData.owner;
@@ -212,11 +207,11 @@ class Chat extends Component{
             lobbyData.messages.forEach(message => {
                 // add message to start of chat array
                 this.state.chat.unshift({key: message.messageObject.snowflake, user:message.messageObject.author, message:message.messageObject.text})
-                this.setState({ state: this.state });
+                this.setState(this.state);
             })
             
         }
-        this.setState({ state: this.state });
+        this.setState(this.state);
         
     })
     handleMessageSubmit = e=> {
@@ -266,6 +261,20 @@ class Chat extends Component{
             setting: false
         })
     }
+    handleMute =e=> {
+        if(this.state.muted) socket.emit("userUnmute")
+        if(!this.state.muted) socket.emit("userMute")
+        this.setState({
+            muted: !this.state.muted
+        })
+        console.log(this.state.muted)
+    }
+
+    handleJoin =e=> {
+        console.log('oaigdsoighaosdgh')
+        this.setState({})
+    }
+
     getDevices(){
         if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
             console.log("enumerateDevices() not supported.");
@@ -299,9 +308,7 @@ class Chat extends Component{
         else if(this.state.setting)return <Settings handleBackFromSettings={this.handleBackFromSettings}/>
         else return <></>
     }
-    setHeight(){
-        
-    }
+ 
     render(){
         
         return(
