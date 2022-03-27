@@ -39,10 +39,6 @@ We created the idea of getin.vc after thinking about the issues that we each fac
 
 ![The Backend Flow Simplified](https://cdn.discordapp.com/attachments/957293311046090845/957642709621940284/Bridge_1.png)
 
-<img width="600" alt="User Experience Flowchart" src="https://user-images.githubusercontent.com/39576123/160270370-2eb73572-5506-4a65-bd52-8369b0a6a1ad.png">
-
-<img width="1000" alt="getin vc(2)" src="https://user-images.githubusercontent.com/39576123/160270422-aa62e6c6-0152-434e-9957-4220017b5830.png">
-
 <br><br> <img src="https://user-images.githubusercontent.com/39576123/160269808-8a75ec37-96b6-41c4-bb60-c62887515c68.png" width="500">
 <br><br> <img src="https://user-images.githubusercontent.com/39576123/160269768-ce24f45c-42a6-429c-a8ff-18d4c87bb4aa.png" width="500">
 <br><br> <img src="https://user-images.githubusercontent.com/39576123/160269847-0f09cb93-32f1-4ca2-92e0-7fe20a5dcdca.png" width="500">
