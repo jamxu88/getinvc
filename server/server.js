@@ -17,6 +17,8 @@ import User from "./classes/user.js";
 import Message from "./classes/message.js";
 
 const server = fastify();
+const users = {};
+const sockets = {};
 
 server.register(fastifyIO);
 server.register(fastifyStatic, {
@@ -76,6 +78,39 @@ server.ready().then(() => {
             console.log(lobby);
             socket.emit("ownerJoin", lobby.data.metadata.code)
         })
+
+        socket.on("join room", roomID => {
+            if (users[roomID]) {
+                users[roomID].push(socket.id);
+            } else {
+                users[roomID] = [socket.id];
+            }
+            sockets[socket.id] = roomID;
+            const usersInThisRoom = users[roomID].filter(id => id !== socket.id);
+            socket.emit("all users", usersInThisRoom);
+        });
+
+        socket.on("sending signal", payload => {
+            io.to(payload.userToSignal).emit('user joined', { signal: payload.signal, callerID: payload.callerID });
+        });
+    
+        socket.on("returning signal", payload => {
+            io.to(payload.callerID).emit('receiving returned signal', { signal: payload.signal, id: socket.id });
+        });
+
+        socket.on('disconnect', () => {
+            const roomID = sockets[socket.id];
+            let room = users[roomID];
+            if (room) {
+                room = room.filter(id => id !== socket.id);
+                users[roomID] = room;
+            }
+            socket.broadcast.emit('user left',socket.id)
+        });
+    
+        socket.on('change', (payload) => {
+            socket.broadcast.emit('change',payload)
+        });
 
         socket.on("joinCode", (code) => {
             lobby = lobbyList[lobbyCodes.indexOf(code)];
@@ -165,14 +200,14 @@ server.ready().then(() => {
         })
 
         // User DC
-        socket.on('disconnect', () => {
+        /* socket.on('disconnect', () => {
             console.log(address + " - Disconnected");
             if(lobby) {
                 let user = lobby.getUserByIp(address);
                 lobby.removeUser(user)
                 syncData(lobby.data.id)
             }
-        })
+        }) */
 
   });
 
