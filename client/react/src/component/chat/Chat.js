@@ -98,20 +98,20 @@ class Chat extends Component{
 			this.userVideo.current.srcObject = stream;
 			this.socketRef.current.emit("join room", "roomcode");
 			this.socketRef.current.on("all users", (users) => {
-			console.log(users)
-			const peers = [];
-			users.forEach((userID) => {
-				const peer = this.createPeer(userID, this.socketRef.current.id, stream);
-					this.peersRef.current.push({
-						peerID: userID,
-						peer,
-					});
-					peers.push({
-						peerID: userID,
-						peer,
-					});
-				});
-				this.setPeers(peers);
+                console.log(users)
+                const peers = [];
+                users.forEach((userID) => {
+                    const peer = this.createPeer(userID, this.socketRef.current.id, stream);
+                    this.peersRef.current.push({
+                        peerID: userID,
+                        peer,
+                    });
+                    peers.push({
+                        peerID: userID,
+                        peer,
+                    });
+                });
+                this.setPeers(peers);
 			});
 			this.socketRef.current.on("user joined", (payload) => {
 				console.log("==",payload)
