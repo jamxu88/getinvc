@@ -182,14 +182,8 @@ class Chat extends Component{
 		return peer;
 	}
 
-
-    eventListener = window.addEventListener('resize', function(event){
-
-        //document.getElementById('chatWindow').style.height = window.innerHeight-36
-        //console.log(document.getElementById('chatWindow').style.height)
-    })
-
     syncData = socket.on("recieveData", (data) => {
+        console.log(this.state)
         lobbyData = data;
         if(lobbyData.owner) {
             this.state.owner = lobbyData.owner;
@@ -213,11 +207,11 @@ class Chat extends Component{
             lobbyData.messages.forEach(message => {
                 // add message to start of chat array
                 this.state.chat.unshift({key: message.messageObject.snowflake, user:message.messageObject.author, message:message.messageObject.text})
-                this.setState({ state: this.state });
+                this.setState(this.state);
             })
             
         }
-        this.setState({ state: this.state });
+        this.setState(this.state);
         
     })
     handleMessageSubmit = e=> {
