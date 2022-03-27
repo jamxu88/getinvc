@@ -9,16 +9,6 @@ class Settings extends Component{
                     
                     <div className='flex flex-col place-content-center space-y-4'>
                         <p className='text-white text-5xl place-self-center p-8'>Settings</p>
-                        <div className='flex space-x-4 place-self-center dark:text-white text-xl items-center'>
-                            <input type="checkbox" id='mute'/>
-                            <p>Toggle Mute</p>
-                            <input type="checkbox" id='push'/>
-                            <p>Mute/Push to Talk Key</p>
-                        </div>
-                        <p className='place-self-center pt-4 dark:text-white text-xl'>Mute/Push to Talk Key</p>
-                        <button className='place-self-center flex border-white border-2 rounded-full w-16 dark:text-white justify-center focus:bg-black'>
-                            <p>K</p>
-                        </button>
                         <IO />
                         <button className='place-self-center' onClick={this.props.handleBackFromSettings}>
                             <svg width="46" height="45" viewBox="0 0 46 45" fill="none" xmlns="http://www.w3.org/2000/svg">

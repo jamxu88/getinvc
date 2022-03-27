@@ -78,7 +78,9 @@ class Chat extends Component{
     handleDarkMode = e => {
         var element = document.getElementById("darkmode");
     }
-
+    handleBack = e =>{
+        window.location = `/`
+    }
     syncData = socket.on("recieveData", (data) => {
         console.log("data recieved")
         console.log(data) // Use this data to adjust UI components
@@ -112,7 +114,6 @@ class Chat extends Component{
         this.setState({ state: this.state });
         
     })
-
     handleMessageSubmit = e=> {
         e.preventDefault()
         var message = this.state.currentMessage
@@ -194,7 +195,7 @@ class Chat extends Component{
                 {this.getComponent()}
                 <table className='max-h-screen w-screen h-screen bg-white text-black dark:bg-darker dark:text-white table-fixed'>
                     <tr className='h-12 text-2xl'>
-                        <th className='w-48'><Getin /></th>
+                        <th className='w-48'><Getin handleBack={this.handleBack}/></th>
                         <th className='flex pt-2 justify-center space-x-2'><p>{this.state.owner.username}'s Lobby -</p><p className='lobbyCode'>{this.state.lobbyId}</p></th> 
                         <th className='w-48'>{this.state.users.length} Members</th>
                     </tr>

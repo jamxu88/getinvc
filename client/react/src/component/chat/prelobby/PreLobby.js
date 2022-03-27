@@ -34,16 +34,6 @@ class PreLobby extends Component {
                             <JoinButton handleUsernameSubmit={this.props.handleUsernameSubmit} username={this.state.username}/>
                             <BackButton handleBack={this.handleBack}/>
                         </div>
-                        <div className='flex space-x-4 place-self-center dark:text-white text-xl items-center'>
-                            <input type="checkbox" id='mute'/>
-                            <p>Toggle Mute</p>
-                            <input type="checkbox" id='push'/>
-                            <p>Mute/Push to Talk Key</p>
-                        </div>
-                        <p className='place-self-center pt-4 dark:text-white text-xl'>Mute/Push to Talk Key</p>
-                        <button className='place-self-center flex border-white border-2 rounded-full w-16 dark:text-white justify-center focus:bg-black'>
-                            <p>K</p>
-                        </button>
                         <IO />
                     </div>
                 </div>
