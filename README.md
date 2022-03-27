@@ -6,6 +6,8 @@
 
 <h4 align="center">Temporary voice and text chat lobbies.</h4>
 
+<img src="https://imgur.com/X5tWvsk.gif" alt="getin.vc" width="500">
+
 <p align="center">
   <a href="#key-features">Key Features</a> •
   <a href="#how-to-use">How To Use</a> •
@@ -34,8 +36,6 @@ You can join a lobby in two ways:
 
 ### Creating a Lobby
 
-![2022-03-27_08-46-39__online-video-cutter_com__AdobeCreativeCloudExpress](https://user-images.githubusercontent.com/39576123/160282769-c631ae54-2e64-49a7-9f82-18aa929f46dd.gif)
-
 1. On the Create page, define the number of members to the lobby, and click "Create".
 
 ### Accessing Settings
@@ -61,7 +61,6 @@ You can join a lobby in two ways:
 
 ### Join a Call
 1. While not in a call, press the phone icon on the bottom left of the screen.
-
 
 ### Leave a call
 1. While in a call, press the phone icon on the bottom left of the screen.
