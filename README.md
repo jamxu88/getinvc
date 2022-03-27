@@ -14,7 +14,6 @@
   <a href="#credits">Credits</a>
 </p>
 
-PUT GIF OF USAGE HERE
 
 ## Key Features
 
@@ -29,10 +28,8 @@ PUT GIF OF USAGE HERE
 You can join a lobby in two ways:
 
 1. On the join page, enter the join code and click "Join".
-<br>GIF HERE
 
 2. Enter a join link into your browser.
-<br>GIF HERE
 
 ### Creating a Lobby
 
