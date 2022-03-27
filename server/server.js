@@ -102,7 +102,7 @@ server.ready().then(() => {
         socket.on("setUsername", (data) => {
             console.log("setting username "+ data)
             console.log(lobby)
-            if(!lobby || !lobby.data.metadata.locked || lobby.data.metadata.users.length >= lobby.data.metadata.max_users) { 
+            if(!lobby) { 
                 socket.emit("invalid", "Lobby does not exist");
                 return;
             }

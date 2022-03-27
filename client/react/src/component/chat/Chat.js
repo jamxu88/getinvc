@@ -30,6 +30,7 @@ socket.on("preLobby", () => {
 
 socket.on("invalid", (message) => {
     alert(message)
+    window.location = window.location.origin
 })
 
 
@@ -40,7 +41,7 @@ socket.on("joinLobby", () => {
 })
 
 socket.on("disc", () => {
-    window.location = "https://getin.vc/"
+    window.location = window.location.origin
 })
 
 
