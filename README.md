@@ -50,5 +50,5 @@ Click the cog on the bottom left of the chat screen.
 ## Credits
 
 This site uses the following open source packages:
-<br> TBD
+<br> TBD.
 
