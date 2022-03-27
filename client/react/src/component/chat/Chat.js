@@ -326,7 +326,7 @@ class Chat extends Component{
                         <td><Members users={this.state.users}/></td>
                     </tr>
                     <tr className='h-24'>
-                        <td className=''><Profile clientInfo = {this.state.client} handleSettings={this.handleSettings}/></td>
+                        <td className=''><Profile clientInfo = {this.state.client} handleSettings={this.handleSettings} handleMute={this.handleMute} handleJoin={this.handleJoin}/></td>
                         <td className='dark:bg-dark p-4 rounded-lg'><Textbox handleMessageSubmit={this.handleMessageSubmit} handleMessageChange={this.handleMessageChange} currentMessage={this.state.currentMessage} /></td>
                         <td><ExtraButton code={this.state.lobbyId}/></td>
                     </tr>
