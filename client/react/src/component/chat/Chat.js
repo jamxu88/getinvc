@@ -191,7 +191,7 @@ class Chat extends Component{
             window.localAudio.srcObject = stream; // B
             window.localAudio.autoplay = true; // C
         }).catch( err => {
-            console.log("u got an error:" + err)
+            //console.log("u got an error:" + err)
         });
     }
     getComponent(){
