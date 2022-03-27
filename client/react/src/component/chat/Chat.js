@@ -24,11 +24,6 @@ if(code) {
     socket.emit("joinCode", code);
 }
 
-
-socket.on("preLobby", () => {
-    // show pre lobby overlay if the code is valid 
-})
-
 socket.on("invalid", (message) => {
     alert(message)
     window.location = window.location.origin
@@ -207,7 +202,6 @@ class Chat extends Component{
             lobbyData.messages.forEach(message => {
                 // add message to start of chat array
                 this.state.chat.unshift({key: message.messageObject.snowflake, user:message.messageObject.author, message:message.messageObject.text})
-                this.setState(this.state);
             })
             
         }
