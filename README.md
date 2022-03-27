@@ -33,6 +33,9 @@ You can join a lobby in two ways:
 <br>GIF HERE
 
 ### Creating a Lobby
+
+![2022-03-27_08-46-39__online-video-cutter_com__AdobeCreativeCloudExpress](https://user-images.githubusercontent.com/39576123/160282769-c631ae54-2e64-49a7-9f82-18aa929f46dd.gif)
+
 1. On the Create page, define the number of members to the lobby, and click "Create".
 
 ### Accessing Settings
