@@ -35,11 +35,11 @@ We created the idea of getin.vc after thinking about the issues that we each fac
 
 (abridged version of flowchart here) <br>
 
-<br> <img src="https://user-images.githubusercontent.com/39576123/160269808-8a75ec37-96b6-41c4-bb60-c62887515c68.png" width="500">
-<br> <img src="https://user-images.githubusercontent.com/39576123/160269768-ce24f45c-42a6-429c-a8ff-18d4c87bb4aa.png" width="500">
-<br> <img src="https://user-images.githubusercontent.com/39576123/160269847-0f09cb93-32f1-4ca2-92e0-7fe20a5dcdca.png" width="500">
-<br> <img src="https://user-images.githubusercontent.com/39576123/160269881-b042f50e-a439-4fea-bb50-536454d3eb2b.png" width="500">
-<br> <img src="https://user-images.githubusercontent.com/39576123/160269933-2e4cb69f-453a-4c16-8feb-d183455ff132.png" width="500">
+<br><br> <img src="https://user-images.githubusercontent.com/39576123/160269808-8a75ec37-96b6-41c4-bb60-c62887515c68.png" width="500">
+<br><br> <img src="https://user-images.githubusercontent.com/39576123/160269768-ce24f45c-42a6-429c-a8ff-18d4c87bb4aa.png" width="500">
+<br><br> <img src="https://user-images.githubusercontent.com/39576123/160269847-0f09cb93-32f1-4ca2-92e0-7fe20a5dcdca.png" width="500">
+<br><br> <img src="https://user-images.githubusercontent.com/39576123/160269881-b042f50e-a439-4fea-bb50-536454d3eb2b.png" width="500">
+<br><br> <img src="https://user-images.githubusercontent.com/39576123/160269933-2e4cb69f-453a-4c16-8feb-d183455ff132.png" width="500">
 
 
 
