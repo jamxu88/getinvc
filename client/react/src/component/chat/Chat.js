@@ -187,21 +187,27 @@ class Chat extends Component{
         else if(this.state.setting)return <Settings handleBackFromSettings={this.handleBackFromSettings}/>
         else return <></>
     }
-   
+    setHeight(){
+        
+    }
     render(){
         
         return(
             <div id="darkmode" className='dark overflow-hidden static'>
                 {this.getComponent()}
+                {window.addEventListener('resize', function(event){
+                    document.getElementById('chatWindow').style.height = window.innerHeight-36
+                    console.log(document.getElementById('chatWindow').style.height)
+                })}
                 <table className='max-h-screen w-screen h-screen bg-white text-black dark:bg-darker dark:text-white table-fixed'>
                     <tr className='h-12 text-2xl'>
                         <th className='w-48'><Getin handleBack={this.handleBack}/></th>
                         <th className='flex pt-2 justify-center space-x-2'><p>{this.state.owner.username}'s Lobby -</p><p className='lobbyCode'>{this.state.lobbyId}</p></th> 
-                        <th className='w-48'>{this.state.users.length} Members</th>
+                        <th className='w-48'>{this.state.users.length} - Members</th>
                     </tr>
-                    <tr id='chatWindow'>
+                    <tr id='chatWindow' className=''>
                         <td><VoiceChannel vcList={this.state.vcList}/></td>
-                        <td className='pl-4 pt-2 flex h-full flex-col-reverse justify-end dark:bg-dark'><TextChannel chatLog={this.state.chat}/></td>
+                        <td className='pl-4 pt-2  h-[81.7vh] flex-col-reverse justify-end dark:bg-dark'><TextChannel chatLog={this.state.chat}/></td>
                         <td><Members users={this.state.users}/></td>
                     </tr>
                     <tr className='h-24'>
