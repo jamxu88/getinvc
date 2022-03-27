@@ -10,6 +10,44 @@ import TextChannel from './TextChannel'
 import Profile from './Profile'
 import ExtraButton from './ExtraButtons'
 import PreLobby from './prelobby/PreLobby'
+import { io } from "socket.io-client";
+const socket = io();
+
+let lobbyData;
+
+const urlParams = new URLSearchParams(window.location.search);
+const code = urlParams.get("code");
+if(code) {
+    socket.emit("joinCode", code);
+}
+
+
+socket.on("preLobby", () => {
+    // show pre lobby overlay if the code is valid 
+})
+
+socket.on("invalid", (message) => {
+    alert(message)
+})
+
+/*document.getElementById("setUsername").addEventListener("click", () => {
+    socket.emit("setUsername", document.getElementById("username").value);
+})*/
+
+socket.on("joinLobby", () => {
+    // Remove Lobby Overlay
+    socket.emit("syncData", true);
+})
+
+socket.on("disc", () => {
+    window.location = "https://getin.vc/"
+})
+
+socket.on("recieveData", (data) => {
+    console.log("data recieved")
+    console.log(data) // Use this data to adjust UI components
+    lobbyData = data;
+})
 
 class Chat extends Component{
     state = {
@@ -77,8 +115,7 @@ class Chat extends Component{
     handleMessageSubmit = e=> {
         e.preventDefault()
         var message = this.state.currentMessage
-        var author = this.state.client.username
-        console.log(author +" "+message) //Change to send message
+        if(message) socket.emit("sendMessage", message);
         this.setState({
             currentMessage: ""
         })
