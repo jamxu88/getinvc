@@ -18,7 +18,7 @@ class Profile extends Component {
         return(
             <div className='flex w-full h-full place-content-center pt-10 text-md items-center'>
                 <div className='text-gogreen pr-2'>{this.setStatus()}</div>
-                <p className='w-20 overflow-hidden'>{this.props.clientInfo.username}</p>
+                <p className='w-20 overflow-hidden truncate'>{this.props.clientInfo.username}</p>
                 <div className='flex space-x-2'>
                     <button><Mic /></button>
                     <button><DC /></button>

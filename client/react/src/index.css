@@ -21,3 +21,10 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #161A27;
   }
+
+#textWindow {
+  margin-top: auto !important;
+  max-height: 82vh;
+  overflow-wrap: break-word;
+  overflow-y: scroll;
+}

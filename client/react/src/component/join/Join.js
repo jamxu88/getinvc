@@ -13,7 +13,8 @@ class Join extends Component {
     }
     handleSubmit = e=> {
         e.preventDefault()
-        window.location = `/app?code=${this.state.lobbyId}`
+        var code = this.state.lobbyId
+        window.location = `/app?code=${code.toUpperCase()}`
     }
     render(){
         return(

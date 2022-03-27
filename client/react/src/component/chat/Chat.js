@@ -81,9 +81,14 @@ class Chat extends Component{
     handleBack = e =>{
         window.location = `/`
     }
+
+    eventListener = window.addEventListener('resize', function(event){
+
+        //document.getElementById('chatWindow').style.height = window.innerHeight-36
+        //console.log(document.getElementById('chatWindow').style.height)
+    })
+
     syncData = socket.on("recieveData", (data) => {
-        console.log("data recieved")
-        console.log(data) // Use this data to adjust UI components
         lobbyData = data;
         if(lobbyData.owner) {
             this.state.owner = lobbyData.owner;
@@ -103,10 +108,10 @@ class Chat extends Component{
             this.state.lobbyId = lobbyData.code;
         }
         if(lobbyData.messages){
-            console.log(this.state.recentMessage)
             this.state.chat = []
             lobbyData.messages.forEach(message => {
-                this.state.chat.push({key: message.messageObject.snowflake, user:message.messageObject.author, message:message.messageObject.text})
+                // add message to start of chat array
+                this.state.chat.unshift({key: message.messageObject.snowflake, user:message.messageObject.author, message:message.messageObject.text})
                 this.setState({ state: this.state });
             })
             
@@ -121,6 +126,13 @@ class Chat extends Component{
         this.setState({
             currentMessage: ""
         })
+        this.scrollToBottom("textWindow")
+
+    }
+
+    scrollToBottom = (id) => {
+        const element = document.getElementById(id);
+        element.scrollTop = element.scrollHeight;
     }
     handleMessageChange =e=>{
         this.setState({
@@ -195,19 +207,15 @@ class Chat extends Component{
         return(
             <div id="darkmode" className='dark overflow-hidden static'>
                 {this.getComponent()}
-                {window.addEventListener('resize', function(event){
-                    document.getElementById('chatWindow').style.height = window.innerHeight-36
-                    console.log(document.getElementById('chatWindow').style.height)
-                })}
                 <table className='max-h-screen w-screen h-screen bg-white text-black dark:bg-darker dark:text-white table-fixed'>
                     <tr className='h-12 text-2xl'>
                         <th className='w-48'><Getin handleBack={this.handleBack}/></th>
                         <th className='flex pt-2 justify-center space-x-2'><p>{this.state.owner.username}'s Lobby -</p><p className='lobbyCode'>{this.state.lobbyId}</p></th> 
-                        <th className='w-48'>{this.state.users.length} - Members</th>
+                        <th className='w-48'>Members - {this.state.users.length}</th>
                     </tr>
                     <tr id='chatWindow' className=''>
                         <td><VoiceChannel vcList={this.state.vcList}/></td>
-                        <td className='pl-4 pt-2  h-[81.7vh] flex-col-reverse justify-end dark:bg-dark'><TextChannel chatLog={this.state.chat}/></td>
+                        <td className='pl-4 pt-2 flex flex-col-reverse h-full justify-end whitespace-normal dark:bg-dark'><TextChannel chatLog={this.state.chat}/></td>
                         <td><Members users={this.state.users}/></td>
                     </tr>
                     <tr className='h-24'>
