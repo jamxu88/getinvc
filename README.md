@@ -17,9 +17,7 @@ PUT GIF OF USAGE HERE
 ## Key Features
 
 * Quick & Easy - Join a voice call in just two clicks.
-* Botting protection.
 * Banning functionality.
-* Choose between mute and push-to-talk.
 * **All contained in your browser, no software necessary.**
 
 ## How To Use
@@ -27,7 +25,6 @@ PUT GIF OF USAGE HERE
 ### Joining a Lobby
 
 You can join a lobby in two ways:
-
 
 1. On the join page, enter the join code and click "Join".
 <br>GIF HERE
@@ -50,5 +47,15 @@ Click the cog on the bottom left of the chat screen.
 ## Credits
 
 This site uses the following open source packages:
-<br> TBD.
+<br>
+* [Electron](http://electron.atom.io/)
+* [Node.js](https://nodejs.org/)
+* [Fastify](https://www.fastify.io/)
+* [fastify-socket.io](https://github.com/alemagio/fastify-socket.io)
+* [nanoid](https://github.com/ai/nanoid)
+* [fastify-static](https://github.com/fastify/fastify-static)
+* [React](https://reactjs.org/)
+* [Socket.io](https://socket.io/)
+* [socket.io-client](https://github.com/socketio/socket.io-client)
+* [uuid](https://github.com/uuidjs/uuid)
 
