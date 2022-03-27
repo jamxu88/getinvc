@@ -9,7 +9,7 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const idLetters = customAlphabet('abcdefghijklmnopqrstuvwxyz', 3)
+const idLetters = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 3)
 const idNumbers = customAlphabet('0123456789', 3)
 
 import Lobby from "./classes/lobby.js";
@@ -80,7 +80,10 @@ server.ready().then(() => {
         socket.on("joinCode", (code) => {
             lobby = lobbyList[lobbyCodes.indexOf(code)];
             console.log(address + " - Join Lobby with code " + code);
-
+            if(!lobby) {
+                socket.emit("invalid", "Invalid Code");
+                return;
+            }
             if(lobby.data.metadata.users.length >= lobby.data.metadata.max_users || lobby.data.metadata.locked) {
                 socket.emit("invalid", "Lobby is full or locked");
                 return;
