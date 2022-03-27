@@ -100,6 +100,7 @@ server.ready().then(() => {
         })
 
         socket.on("setUsername", (data) => {
+            console.log("setting username "+ data)
             console.log(lobby)
             if(!lobby) {
                 socket.emit("invalid", "Lobby does not exist");
@@ -126,6 +127,7 @@ server.ready().then(() => {
 
         socket.on("sendMessage", (msg) => {
             let message = new Message();
+            console.log(lobby)
             let user = lobby.getUserByIp(address);
             message.setAuthor(user.data.username);
             message.setSnowflake(Date.now());

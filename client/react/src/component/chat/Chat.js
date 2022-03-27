@@ -13,8 +13,40 @@ import PreLobby from './prelobby/PreLobby'
 import { io } from "socket.io-client";
 const socket = io();
 
+let lobbyData;
+
+
+const urlParams = new URLSearchParams(window.location.search);
+const code = urlParams.get("code");
+if(code) {
+    socket.emit("joinCode", code);
+}
+
+
+socket.on("preLobby", () => {
+    // show pre lobby overlay if the code is valid 
+})
+
+socket.on("invalid", (message) => {
+    alert(message)
+})
+
+
+
+socket.on("joinLobby", () => {
+    // Remove Lobby Overlay
+    socket.emit("syncData", true);
+})
+
+socket.on("disc", () => {
+    window.location = "https://getin.vc/"
+})
+
+
+
 class Chat extends Component{
     state = {
+        recentMessage: 0,
         lobbyId: "",
         client: {
             username: "",
@@ -38,34 +70,9 @@ class Chat extends Component{
             {
                 username: "jamxu",
                 otherinfo: {}
-            },
-            {
-                username: "bigbaby",
-                otherinfo: {}
-            },
-            {
-                username: "ifiregamer",
-                otherinfo: {}
-            },
-            {
-                username: "bigbanana",
-                otherinfo: {}
-            },
-            {
-                username: "thez",
-                otherinfo: {}
-            },
-            {
-                username: "merk",
-                otherinfo: {}
-            },
-        ],
-        chat: [
-            {
-                user: '',
-                message: ''
             }
-        ], //ment to test fringe cases in the text box
+        ],
+        chat: [], //ment to test fringe cases in the text box
         io:[
             {
                 type:"input",
@@ -79,12 +86,39 @@ class Chat extends Component{
             }
         ],
         currentMessage: "",
-        preLobby: true
+        preLobby: true,
+        owner: "",
 
     }
     handleDarkMode = e => {
         var element = document.getElementById("darkmode");
     }
+
+    syncData = socket.on("recieveData", (data) => {
+        console.log("data recieved")
+        console.log(data) // Use this data to adjust UI components
+        lobbyData = data;
+        if(lobbyData.owner) {
+            this.state.owner = lobbyData.owner;
+        }
+        if(lobbyData.users) {
+            this.state.users = lobbyData.users;
+        }
+        if(lobbyData.code) {
+            this.state.lobbyId = lobbyData.code;
+        }
+        if(lobbyData.messages){
+            console.log(this.state.recentMessage)
+            this.state.chat = []
+            lobbyData.messages.forEach(message => {
+                this.state.chat.push({key: message.messageObject.snowflake, user:message.messageObject.author, message:message.messageObject.text})
+                this.setState({ state: this.state });
+            })
+            
+        }
+        
+    })
+
     handleMessageSubmit = e=> {
         e.preventDefault()
         var message = this.state.currentMessage
@@ -100,7 +134,7 @@ class Chat extends Component{
     }
     handleMessageRecieve(e){
         console.log(e)
-        this.state.chat.push(e) //Should send e with {user,message} format
+         //Should send e with {user,message} format
     }
     handleUsernameSubmit =e=>{
         this.setState({
@@ -156,8 +190,8 @@ class Chat extends Component{
                 <table className='max-h-screen w-screen h-screen bg-white text-black dark:bg-darker dark:text-white table-fixed'>
                     <tr className='h-12 text-2xl'>
                         <th className='w-48'><Getin /></th>
-                        <th className='flex pt-2 justify-center space-x-2'><p>jamxu's Lobby -</p><LobbyCode /></th> {/* This should later be changed to include hover properties*/}
-                        <th className='w-48'>{this.state.userCount} Members</th>
+                        <th className='flex pt-2 justify-center space-x-2'><p>{this.state.owner.username}'s Lobby -</p><p className='lobbyCode'>{this.state.lobbyId}</p></th> 
+                        <th className='w-48'>{this.state.users.length} Members</th>
                     </tr>
                     <tr id='chatWindow'>
                         <td><VoiceChannel vcList={this.state.vcList}/></td>
