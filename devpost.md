@@ -33,8 +33,10 @@ getin.vc is a temporary VOIP (Voice Over Internet Protocol) lobby platform targe
 We created the idea of getin.vc after thinking about the issues that we each faced in our lives. We quickly realized that the lack of a quick way to talk to teammates on text-only games was a hole that needed to be filled. We created a flow chart of what the project would need to do, and planned out the UI needed to achieve what we wanted on Figma. 
 
 
+![The Backend Flow Simplified](https://cdn.discordapp.com/attachments/957293311046090845/957642709621940284/Bridge_1.png)
 
 <img width="600" alt="User Experience Flowchart" src="https://user-images.githubusercontent.com/39576123/160270370-2eb73572-5506-4a65-bd52-8369b0a6a1ad.png">
+
 <img width="1000" alt="getin vc(2)" src="https://user-images.githubusercontent.com/39576123/160270422-aa62e6c6-0152-434e-9957-4220017b5830.png">
 
 <br><br> <img src="https://user-images.githubusercontent.com/39576123/160269808-8a75ec37-96b6-41c4-bb60-c62887515c68.png" width="500">
