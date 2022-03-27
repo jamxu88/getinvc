@@ -34,7 +34,8 @@ We created the idea of getin.vc after thinking about the issues that we each fac
 
 
 
-<img width="6226" alt="getin vc" src="https://user-images.githubusercontent.com/39576123/160270257-2bcfa580-88a1-491d-a000-c9dcb8d10c54.png"><br>
+<img width="600" alt="User Experience Flowchart" src="https://user-images.githubusercontent.com/39576123/160270370-2eb73572-5506-4a65-bd52-8369b0a6a1ad.png">
+<img width="1000" alt="getin vc(2)" src="https://user-images.githubusercontent.com/39576123/160270422-aa62e6c6-0152-434e-9957-4220017b5830.png">
 
 <br><br> <img src="https://user-images.githubusercontent.com/39576123/160269808-8a75ec37-96b6-41c4-bb60-c62887515c68.png" width="500">
 <br><br> <img src="https://user-images.githubusercontent.com/39576123/160269768-ce24f45c-42a6-429c-a8ff-18d4c87bb4aa.png" width="500">
@@ -46,11 +47,8 @@ We created the idea of getin.vc after thinking about the issues that we each fac
 After finishing our designs and waiting until the start of the hackathon, the coding begun. We faced many issues, as we were working on an unfamiliar type of application. We collaborated over Github and kept tabs on each other's progress to make sure everyone was able to succeed. We sent code, shared screens, and bounced ideas over Discord. We spent quite a few hours overnight finishing our application. (stuff in morning IDK)
 
 
-
-
-
 ## Accomplishments that we're proud of
-We're especially proud of the implementation of a messaging syncing system, so that every user sees the same message at the same time. 
+We're especially proud of the implementation of a messaging syncing system, so that every user sees the same message at the same time. The implementation of a voice calling system was especially impressive to us, because it involved the usage of complicated libraries that we had to learn to use. We also somehow managed to work until 4:00 AM, which was a miracle by itself.
 
 
 ## What we learned
