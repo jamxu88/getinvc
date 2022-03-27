@@ -13,42 +13,6 @@ import PreLobby from './prelobby/PreLobby'
 import { io } from "socket.io-client";
 const socket = io();
 
-let lobbyData;
-
-const urlParams = new URLSearchParams(window.location.search);
-const code = urlParams.get("code");
-if(code) {
-    socket.emit("joinCode", code);
-}
-
-
-socket.on("preLobby", () => {
-    // show pre lobby overlay if the code is valid 
-})
-
-socket.on("invalid", (message) => {
-    alert(message)
-})
-
-/*document.getElementById("setUsername").addEventListener("click", () => {
-    socket.emit("setUsername", document.getElementById("username").value);
-})*/
-
-socket.on("joinLobby", () => {
-    // Remove Lobby Overlay
-    socket.emit("syncData", true);
-})
-
-socket.on("disc", () => {
-    window.location = "https://getin.vc/"
-})
-
-socket.on("recieveData", (data) => {
-    console.log("data recieved")
-    console.log(data) // Use this data to adjust UI components
-    lobbyData = data;
-})
-
 class Chat extends Component{
     state = {
         lobbyId: "",
@@ -98,14 +62,22 @@ class Chat extends Component{
         ],
         chat: [
             {
-                user: "jamxu",
-                message: "first message"
-            },
-            {
-                user: "jamxu",
-                message: "second message"
+                user: '',
+                message: ''
             }
         ], //ment to test fringe cases in the text box
+        io:[
+            {
+                type:"input",
+                name:"mic",
+                id:"fghjdfkshjl"
+            },
+            {
+                type:"output",
+                name:"mic",
+                id:"fghjdfkshjl"
+            }
+        ],
         currentMessage: "",
         preLobby: true
 
@@ -126,7 +98,8 @@ class Chat extends Component{
             currentMessage: e.target.value
         })
     }
-    handleMessageRecieve =e=>{
+    handleMessageRecieve(e){
+        console.log(e)
         this.state.chat.push(e) //Should send e with {user,message} format
     }
     handleUsernameSubmit =e=>{
@@ -137,7 +110,38 @@ class Chat extends Component{
             },
             preLobby:false
         })
+        this.getDevices()
+        this.getLocalStream()
+        socket.emit("setUsername", e.target.value);
         
+    }
+    getDevices(){
+        if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+            console.log("enumerateDevices() not supported.");
+            return;
+          }
+          
+          // List cameras and microphones.
+          
+          navigator.mediaDevices.enumerateDevices()
+          .then(function(devices) {
+            devices.forEach(function(device) {
+              console.log(device.kind + ": " + device.label +
+                          " id = " + device.deviceId);
+            });
+          })
+          .catch(function(err) {
+            console.log(err.name + ": " + err.message);
+          });
+    }
+    getLocalStream() {
+        navigator.mediaDevices.getUserMedia({video: false, audio: true}).then( stream => {
+            window.localStream = stream; // A
+            window.localAudio.srcObject = stream; // B
+            window.localAudio.autoplay = true; // C
+        }).catch( err => {
+            console.log("u got an error:" + err)
+        });
     }
     getComponent(){
         if(this.state.preLobby)return <PreLobby handleUsernameSubmit={this.handleUsernameSubmit}/>
@@ -170,4 +174,5 @@ class Chat extends Component{
         )
     }
 }
+
 export default Chat
