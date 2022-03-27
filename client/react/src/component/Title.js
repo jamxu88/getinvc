@@ -15,6 +15,9 @@ class Title extends Component{
     }
     getComponent(){
         let component;
+        let urlParams = new URLSearchParams(window.location.search);
+        let code = urlParams.get("code");
+        if(code) window.location = window.location.origin + "/app?code=" + code;
         switch (this.state.titleState){
             case 'title' :
                 component = <Form handleSubmitForm={this.handleSubmitForm}/>;
