@@ -125,6 +125,9 @@ class Chat extends Component{
             currentMessage: e.target.value
         })
     }
+    handleMessageRecieve =e=>{
+        this.state.chat.push(e) //Should send e with {user,message} format
+    }
    
     render(){
         
