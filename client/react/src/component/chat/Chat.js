@@ -44,12 +44,15 @@ class Chat extends Component{
 
     constructor(props) {
         super(props);
-        this.socketRef = React.createRef();
-        this.userVideo = React.createRef();
+        this.socketRef = React.createRef({});
+        this.userVideo = React.createRef({});
         this.peersRef = React.createRef([]);
     }
 
     state = {
+        socketRef: {},
+        userVideo: {},
+        peersRef: [],
         recentMessage: 0,
         lobbyId: "",
         client: {
@@ -90,14 +93,14 @@ class Chat extends Component{
 		navigator.mediaDevices
 		.getUserMedia({ audio: true })
 		.then((stream) => {
-			this.userVideo.current.srcObject = stream;
-			this.socketRef.current.emit("join room", "roomcode");
-			this.socketRef.current.on("all users", (users) => {
+			this.state.userVideo.current.srcObject(stream);
+			this.state.socketRef.current.emit("join room", "roomcode");
+			this.state.socketRef.current.on("all users", (users) => {
                 console.log(users)
                 const peers = [];
                 users.forEach((userID) => {
-                    const peer = this.createPeer(userID, this.socketRef.current.id, stream);
-                    this.peersRef.current.push({
+                    const peer = this.createPeer(userID, this.state.socketRef.current.id, stream);
+                    this.state.peersRef.current.push({
                         peerID: userID,
                         peer,
                     });
@@ -108,10 +111,10 @@ class Chat extends Component{
                 });
                 this.setPeers(peers);
 			});
-			this.socketRef.current.on("user joined", (payload) => {
+			this.state.socketRef.current.on("user joined", (payload) => {
 				console.log("==",payload)
 				const peer = this.addPeer(payload.signal, payload.callerID, stream);
-				this.peersRef.current.push({
+				this.state.peersRef.current.push({
 					peerID: payload.callerID,
 					peer,
 				});
@@ -122,22 +125,22 @@ class Chat extends Component{
 				this.setPeers((users) => [...users, peerObj]);
 			});
 
-			this.socketRef.current.on("user left", (id) => {
-			const peerObj = this.peersRef.current.find((p) => p.peerID === id);
+			this.state.socketRef.current.on("user left", (id) => {
+			const peerObj = this.state.peersRef.current.find((p) => p.peerID === id);
 			if (peerObj) {
 				peerObj.peer.destroy();
 			}
-			const peers = this.peersRef.current.filter((p) => p.peerID !== id);
-                this.peersRef.current = peers;
+			const peers = this.state.peersRef.current.filter((p) => p.peerID !== id);
+                this.state.peersRef.current(peers);
 				this.setPeers(peers);
 			});
 
-			this.socketRef.current.on("receiving returned signal", (payload) => {
-				const item = this.peersRef.current.find((p) => p.peerID === payload.id);
+			this.state.socketRef.current.on("receiving returned signal", (payload) => {
+				const item = this.state.peersRef.current.find((p) => p.peerID === payload.id);
 				item.peer.signal(payload.signal);
 			});
 
-			this.socketRef.current.on("change", (payload) => {
+			this.state.socketRef.current.on("change", (payload) => {
 				this.state.userUpdate(payload);
 			});
 		});
@@ -151,7 +154,7 @@ class Chat extends Component{
 		});
 	
 		peer.on("signal", (signal) => {
-			this.socketRef.current.emit("sending signal", {
+			this.state.socketRef.current.emit("sending signal", {
 				userToSignal,
 				callerID,
 				signal,
@@ -169,7 +172,7 @@ class Chat extends Component{
 		});
 	
 		peer.on("signal", (signal) => {
-			this.socketRef.current.emit("returning signal", { signal, callerID });
+			this.state.socketRef.current.emit("returning signal", { signal, callerID });
 		});
 	
 		peer.signal(incomingSignal);
