@@ -5,7 +5,11 @@
   <a href="http://getin.vc"><img src="https://user-images.githubusercontent.com/39576123/160253824-593bf53c-57c3-4b02-9631-1d09619dcca2.png" alt="getin.vc" width="200"></a>
 </h1>
 
-<h4 align="center">Temporary voice and text chat lobbies.</h4><br>
+<h4 align="center">Temporary voice and text chat lobbies.</h4>
+<h1 align="center">
+<img src="https://user-images.githubusercontent.com/39576123/160287035-dfe7a8ff-21e3-4cca-9266-aa8ddd8a65de.gif" alt="getin.vc" width="500">
+</h1>
+
 
 ### What if there was an easier way to quickly speak to people online?
 In many online games, such as League of Legends, only text chat is available to communciate between players. Creating a discord server leads to additional hassle, as members would likely need to leave after, and could be saddled with pings.
