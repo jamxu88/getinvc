@@ -33,14 +33,42 @@ You can join a lobby in two ways:
 <br>GIF HERE
 
 ### Creating a Lobby
-On the Create page, define the number of members to the lobby, and click "Create".
+1. On the Create page, define the number of members to the lobby, and click "Create".
 
 ### Accessing Settings
-Click the cog on the bottom left of the chat screen. 
+1. Click the cog on the bottom left of the chat screen. 
 
 ### Locking a Lobby
 1. As an owner, click the cog on the bottom left to access lobby settings.
-2. Click "Lock Lobby"
+2. Click "Lock Lobby".
+
+### Change Input or Output Device
+1. Click the cog on the bottom left to access lobby settings.
+2. Click the dropdown next to "Input Device" or "Output Device" and select the desired option.
+
+### Edit Volume of Individual Users
+1. Click the slider icon to the right of the "Voice Channel" title.
+2. Use the volume sliders that appear for each user.
+
+### Sharing a Lobby
+1. Click the share icon on the bottom right of the screen. The join link will automatically be copied into your clipboard.
+
+### Leaving a Lobby
+1. Click the leave icon on the bottom right of the screen. You will be sent back to the main screen.
+
+### Join a Call
+1. While not in a call, press the phone icon on the bottom left of the screen.
+
+
+### Leave a call
+1. While in a call, press the phone icon on the bottom left of the screen.
+
+### Send a Message
+1. Type the desired message in the text box at the bottom of the screen.
+2. Press Enter or click the arrow to the right of the textbox.
+
+### Toggle mute
+1. Click the microphone icon on the bottom left of the screen.
 
 
 
