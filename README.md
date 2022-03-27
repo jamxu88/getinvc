@@ -76,7 +76,6 @@ You can join a lobby in two ways:
 
 This site uses the following open source packages:
 <br>
-* [Electron](http://electron.atom.io/)
 * [Node.js](https://nodejs.org/)
 * [Fastify](https://www.fastify.io/)
 * [fastify-socket.io](https://github.com/alemagio/fastify-socket.io)
