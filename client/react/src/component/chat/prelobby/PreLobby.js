@@ -13,6 +13,9 @@ class PreLobby extends Component {
             username: e.target.value
         })
     }
+    handleBack = e=>{
+        window.location = `/`
+    }
     render(){
         return(
             <div>
@@ -29,7 +32,7 @@ class PreLobby extends Component {
                         <div className='space-x-4'>
                             <Username handleUsernameSubmit={this.props.handleUsernameSubmit} username={this.state.username} handleOnChange={this.handleOnChange}/>
                             <JoinButton handleUsernameSubmit={this.props.handleUsernameSubmit} username={this.state.username}/>
-                            <BackButton />
+                            <BackButton handleBack={this.handleBack}/>
                         </div>
                         <div className='flex space-x-4 place-self-center dark:text-white text-xl items-center'>
                             <input type="checkbox" id='mute'/>

@@ -22,7 +22,7 @@ class Profile extends Component {
                 <div className='flex space-x-2'>
                     <button><Mic /></button>
                     <button><DC /></button>
-                    <button><Setting /></button>
+                    <button onClick={this.props.handleSettings}><Setting /></button>
                 </div>
             </div>
 

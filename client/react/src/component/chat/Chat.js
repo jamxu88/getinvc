@@ -11,6 +11,7 @@ import Profile from './Profile'
 import ExtraButton from './ExtraButtons'
 import PreLobby from './prelobby/PreLobby'
 import { io } from "socket.io-client";
+import Settings from './settings/Settings'
 const socket = io();
 
 let lobbyData;
@@ -88,6 +89,7 @@ class Chat extends Component{
         currentMessage: "",
         preLobby: true,
         owner: "",
+        setting: false
 
     }
     handleDarkMode = e => {
@@ -149,6 +151,16 @@ class Chat extends Component{
         socket.emit("setUsername", e.target.value);
         
     }
+    handleSettings =e=>{
+        this.setState({
+            setting: true
+        })
+    }
+    handleBackFromSettings =e=>{
+        this.setState({
+            setting: false
+        })
+    }
     getDevices(){
         if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
             console.log("enumerateDevices() not supported.");
@@ -179,6 +191,7 @@ class Chat extends Component{
     }
     getComponent(){
         if(this.state.preLobby)return <PreLobby handleUsernameSubmit={this.handleUsernameSubmit}/>
+        else if(this.state.setting)return <Settings handleBackFromSettings={this.handleBackFromSettings}/>
         else return <></>
     }
    
@@ -199,7 +212,7 @@ class Chat extends Component{
                         <td><Members users={this.state.users}/></td>
                     </tr>
                     <tr className='h-24'>
-                        <td className=''><Profile clientInfo = {this.state.client}/></td>
+                        <td className=''><Profile clientInfo = {this.state.client} handleSettings={this.handleSettings}/></td>
                         <td className='dark:bg-dark p-4 rounded-lg'><Textbox handleMessageSubmit={this.handleMessageSubmit} handleMessageChange={this.handleMessageChange} currentMessage={this.state.currentMessage} /></td>
                         <td><ExtraButton /></td>
                     </tr>
