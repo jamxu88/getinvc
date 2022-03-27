@@ -53,26 +53,8 @@ class Chat extends Component{
             username: "",
             status: "silent"
         },
-        vcList: [
-            {
-                username: "jamxu",
-                status: "talking"
-            },
-            {
-                username: "merk",
-                status: "muted"
-            },
-            {
-                username: "ifiregamer",
-                status: "silent"
-            }
-        ],
-        users: [
-            {
-                username: "jamxu",
-                otherinfo: {}
-            }
-        ],
+        vcList: [],
+        users: [],
         chat: [], //ment to test fringe cases in the text box
         io:[
             {
@@ -105,6 +87,14 @@ class Chat extends Component{
         }
         if(lobbyData.users) {
             this.state.users = lobbyData.users;
+            lobbyData.users.map(user => {
+                if(user.inVoiceChat) {
+                    this.state.vcList.push({
+                        user: user.username,
+                        status: "talking"
+                    })
+                }
+            })
         }
         if(lobbyData.code) {
             this.state.lobbyId = lobbyData.code;
@@ -118,6 +108,7 @@ class Chat extends Component{
             })
             
         }
+        this.setState({ state: this.state });
         
     })
 
