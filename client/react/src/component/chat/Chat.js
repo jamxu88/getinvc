@@ -1,3 +1,4 @@
+import Peer from "simple-peer";
 import React, {Component} from 'react'
 import Getin from './Getin'
 import Sendbutton from './sendbutton'
@@ -33,8 +34,6 @@ socket.on("invalid", (message) => {
     window.location = window.location.origin
 })
 
-
-
 socket.on("joinLobby", () => {
     // Remove Lobby Overlay
     socket.emit("syncData", true);
@@ -47,6 +46,14 @@ socket.on("disc", () => {
 
 
 class Chat extends Component{
+
+    constructor(props) {
+        super(props);
+        this.socketRef = React.createRef();
+        this.userVideo = React.createRef();
+        this.peersRef = React.createRef([]);
+    }
+
     state = {
         recentMessage: 0,
         lobbyId: "",
@@ -72,8 +79,9 @@ class Chat extends Component{
         currentMessage: "",
         preLobby: true,
         owner: "",
-        setting: false
-
+        setting: false,
+        peers: [],
+        userUpdate: [],
     }
     handleDarkMode = e => {
         var element = document.getElementById("darkmode");
@@ -81,6 +89,98 @@ class Chat extends Component{
     handleBack = e =>{
         window.location = `/`
     }
+
+    createStream() {
+		navigator.mediaDevices
+		.getUserMedia({ audio: true })
+		.then((stream) => {
+			this.userVideo.current.srcObject = stream;
+			this.socketRef.current.emit("join room", "roomcode");
+			this.socketRef.current.on("all users", (users) => {
+			console.log(users)
+			const peers = [];
+			users.forEach((userID) => {
+				const peer = this.createPeer(userID, this.socketRef.current.id, stream);
+					this.peersRef.current.push({
+						peerID: userID,
+						peer,
+					});
+					peers.push({
+						peerID: userID,
+						peer,
+					});
+				});
+				this.setPeers(peers);
+			});
+			this.socketRef.current.on("user joined", (payload) => {
+				console.log("==",payload)
+				const peer = this.addPeer(payload.signal, payload.callerID, stream);
+				this.peersRef.current.push({
+					peerID: payload.callerID,
+					peer,
+				});
+				const peerObj = {
+					peer,
+					peerID: payload.callerID,
+				};
+				this.setPeers((users) => [...users, peerObj]);
+			});
+
+			this.socketRef.current.on("user left", (id) => {
+			const peerObj = this.peersRef.current.find((p) => p.peerID === id);
+			if (peerObj) {
+				peerObj.peer.destroy();
+			}
+			const peers = this.peersRef.current.filter((p) => p.peerID !== id);
+                this.peersRef.current = peers;
+				this.setPeers(peers);
+			});
+
+			this.socketRef.current.on("receiving returned signal", (payload) => {
+				const item = this.peersRef.current.find((p) => p.peerID === payload.id);
+				item.peer.signal(payload.signal);
+			});
+
+			this.socketRef.current.on("change", (payload) => {
+				this.state.userUpdate(payload);
+			});
+		});
+	}
+
+    createPeer(userToSignal, callerID, stream) {
+		const peer = new Peer({
+			initiator: true,
+			trickle: false,
+			stream,
+		});
+	
+		peer.on("signal", (signal) => {
+			this.socketRef.current.emit("sending signal", {
+				userToSignal,
+				callerID,
+				signal,
+			});
+		});
+	
+		return peer;
+	}
+
+    addPeer(incomingSignal, callerID, stream) {
+		const peer = new Peer({
+			initiator: false,
+			trickle: false,
+			stream,
+		});
+	
+		peer.on("signal", (signal) => {
+			this.socketRef.current.emit("returning signal", { signal, callerID });
+		});
+	
+		peer.signal(incomingSignal);
+	
+		return peer;
+	}
+
 
     eventListener = window.addEventListener('resize', function(event){
 
