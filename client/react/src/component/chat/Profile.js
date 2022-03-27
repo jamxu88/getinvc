@@ -20,8 +20,8 @@ class Profile extends Component {
                 <div className='text-gogreen pr-2'>{this.setStatus()}</div>
                 <p className='w-20 overflow-hidden truncate'>{this.props.clientInfo.username}</p>
                 <div className='flex space-x-2'>
-                    <button><Mic /></button>
-                    <button><DC /></button>
+                    <button onClick={this.props.handleMute}><Mic /></button>
+                    <button onClick={this.props.handleJoin}><DC /></button>
                     <button onClick={this.props.handleSettings}><Setting /></button>
                 </div>
             </div>

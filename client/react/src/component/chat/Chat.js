@@ -82,6 +82,7 @@ class Chat extends Component{
         setting: false,
         peers: [],
         userUpdate: [],
+        muted: false,
     }
     handleDarkMode = e => {
         var element = document.getElementById("darkmode");
@@ -266,6 +267,20 @@ class Chat extends Component{
             setting: false
         })
     }
+    handleMute =e=> {
+        if(this.state.muted) socket.emit("userUnmute")
+        if(!this.state.muted) socket.emit("userMute")
+        this.setState({
+            muted: !this.state.muted
+        })
+        console.log(this.state.muted)
+    }
+
+    handleJoin =e=> {
+        console.log('oaigdsoighaosdgh')
+        this.setState({})
+    }
+
     getDevices(){
         if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
             console.log("enumerateDevices() not supported.");
@@ -299,9 +314,7 @@ class Chat extends Component{
         else if(this.state.setting)return <Settings handleBackFromSettings={this.handleBackFromSettings}/>
         else return <></>
     }
-    setHeight(){
-        
-    }
+ 
     render(){
         
         return(
