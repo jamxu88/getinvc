@@ -2,7 +2,7 @@
 <h1 align="center">
 
   <br>
-  <a href="http://getin.vc"><img src="https://user-images.githubusercontent.com/39576123/160253824-593bf53c-57c3-4b02-9631-1d09619dcca2.png" alt="getin.vc" width="200"></a>
+  <a href="http://getin.vc"><img src="https://user-images.githubusercontent.com/39576123/160287162-980f10de-ec50-43ab-bd41-cc0e45fdeb2e.png" alt="getin.vc" width="200"></a>
 </h1>
 
 <h4 align="center">Temporary voice and text chat lobbies.</h4>
