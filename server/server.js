@@ -102,11 +102,11 @@ server.ready().then(() => {
         socket.on("setUsername", (data) => {
             console.log("setting username "+ data)
             console.log(lobby)
-            if(lobby.data.metadata.maxUsers == null) lobby.data.metadata.maxUsers = 0;
             if(!lobby || !lobby.data.metadata.locked || lobby.data.metadata.users.length >= lobby.data.metadata.max_users) { 
                 socket.emit("invalid", "Lobby does not exist");
                 return;
             }
+            if(lobby.data.metadata.maxUsers == null) lobby.data.metadata.maxUsers = 0;
             console.log(lobby.getDataServer())
             console.log(lobby.getDataSync())
             if(lobby.data.metadata.users.length >= lobby.data.metadata.max_users || lobby.data.metadata.locked) {
@@ -127,10 +127,11 @@ server.ready().then(() => {
         })
 
         socket.on("sendMessage", (msg) => {
-            if(!lobby) return;
+            if(!lobby) return socket.emit('invalid', "Lobby does not exist");
             let message = new Message();
             console.log(lobby)
             let user = lobby.getUserByIp(address);
+            if(!user) return socket.emit('invalid', "User does not exist");;
             message.setAuthor(user.data.username);
             message.setSnowflake(Date.now());
             message.setText(msg);
@@ -172,6 +173,7 @@ server.ready().then(() => {
                 syncData(lobby.data.id)
             }
         })
+
   });
 
 });
