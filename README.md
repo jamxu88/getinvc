@@ -6,7 +6,9 @@
 
 <h4 align="center">Temporary voice and text chat lobbies.</h4>
 
-<img src="https://imgur.com/X5tWvsk.gif" alt="getin.vc" width="500">
+<h1 align="center">
+<img src="https://user-images.githubusercontent.com/39576123/160287035-dfe7a8ff-21e3-4cca-9266-aa8ddd8a65de.gif" alt="getin.vc" width="500">
+</h1>
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
