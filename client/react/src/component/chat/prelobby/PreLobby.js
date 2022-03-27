@@ -5,6 +5,14 @@ import BackButton from './BackButton'
 import IO from './IO'
 
 class PreLobby extends Component {
+    state = {
+        username:""
+    }
+    handleOnChange = e=>{
+        this.setState({
+            username: e.target.value
+        })
+    }
     render(){
         return(
             <div>
@@ -19,8 +27,8 @@ class PreLobby extends Component {
                             </svg>
                         </button>
                         <div className='space-x-4'>
-                            <Username />
-                            <JoinButton />
+                            <Username handleUsernameSubmit={this.props.handleUsernameSubmit} username={this.state.username} handleOnChange={this.handleOnChange}/>
+                            <JoinButton handleUsernameSubmit={this.props.handleUsernameSubmit} username={this.state.username}/>
                             <BackButton />
                         </div>
                         <div className='flex space-x-4 place-self-center dark:text-white text-xl items-center'>

@@ -53,7 +53,7 @@ class Chat extends Component{
     state = {
         lobbyId: "",
         client: {
-            username: "ifiregamer",
+            username: "",
             status: "silent"
         },
         vcList: [
@@ -106,7 +106,8 @@ class Chat extends Component{
                 message: "second message"
             }
         ], //ment to test fringe cases in the text box
-        currentMessage: ""
+        currentMessage: "",
+        preLobby: true
 
     }
     handleDarkMode = e => {
@@ -128,12 +129,26 @@ class Chat extends Component{
     handleMessageRecieve =e=>{
         this.state.chat.push(e) //Should send e with {user,message} format
     }
+    handleUsernameSubmit =e=>{
+        this.setState({
+            client: {
+                username: e.target.value,
+                status: "silent"
+            },
+            preLobby:false
+        })
+        
+    }
+    getComponent(){
+        if(this.state.preLobby)return <PreLobby handleUsernameSubmit={this.handleUsernameSubmit}/>
+        else return <></>
+    }
    
     render(){
         
         return(
             <div id="darkmode" className='dark overflow-hidden static'>
-                
+                {this.getComponent()}
                 <table className='max-h-screen w-screen h-screen bg-white text-black dark:bg-darker dark:text-white table-fixed'>
                     <tr className='h-12 text-2xl'>
                         <th className='w-48'><Getin /></th>
