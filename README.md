@@ -87,3 +87,6 @@ This site uses the following open source packages:
 * [socket.io-client](https://github.com/socketio/socket.io-client)
 * [uuid](https://github.com/uuidjs/uuid)
 
+## Figma and FigJam Design Files
+[Figma](https://www.figma.com/file/FpR0mryfAYbsNOrlhjLsAy/getin.vc?node-id=0%3A1)
+[FigJam](https://www.figma.com/file/3Lzd4xCQFM1ZueeA1xDqFd/getin.vc?node-id=0%3A1)
